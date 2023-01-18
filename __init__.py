@@ -10,7 +10,7 @@ md_maintainers = '@stevenxxiu'
 md_bin_dependencies = ['goldendict']
 
 TRIGGER = 'gd'
-ICON_PATH = '/usr/share/pixmaps/goldendict.png'
+ICON_PATH = 'xdg:goldendict'
 
 
 class Plugin(QueryHandler):
