@@ -4,7 +4,7 @@ from albert import Action, Item, Query, QueryHandler, runDetachedProcess  # pyli
 md_iid = '0.5'
 md_version = '1.0'
 md_name = 'GoldenDict Steven'
-md_description = 'Searches in GoldenDict.'
+md_description = 'Searches in GoldenDict'
 md_url = 'https://github.com/stevenxxiu/albert_goldendict_steven'
 md_maintainers = '@stevenxxiu'
 md_bin_dependencies = ['goldendict']
