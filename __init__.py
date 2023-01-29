@@ -9,7 +9,6 @@ md_url = 'https://github.com/stevenxxiu/albert_goldendict_steven'
 md_maintainers = '@stevenxxiu'
 md_bin_dependencies = ['goldendict']
 
-TRIGGER = 'gd'
 ICON_PATH = 'xdg:goldendict'
 
 
@@ -24,7 +23,7 @@ class Plugin(QueryHandler):
         return md_description
 
     def defaultTrigger(self) -> str:
-        return f'{TRIGGER} '
+        return 'gd '
 
     def synopsis(self) -> str:
         return 'query'
