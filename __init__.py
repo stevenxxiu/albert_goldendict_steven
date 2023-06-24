@@ -1,8 +1,8 @@
-from albert import Action, Item, Query, QueryHandler, runDetachedProcess  # pylint: disable=import-error
+from albert import Action, Item, TriggerQuery, TriggerQueryHandler, runDetachedProcess  # pylint: disable=import-error
 
 
-md_iid = '0.5'
-md_version = '1.0'
+md_iid = '1.0'
+md_version = '1.1'
 md_name = 'GoldenDict Steven'
 md_description = 'Searches in GoldenDict'
 md_url = 'https://github.com/stevenxxiu/albert_goldendict_steven'
@@ -12,7 +12,7 @@ md_bin_dependencies = ['goldendict']
 ICON_PATH = 'xdg:goldendict'
 
 
-class Plugin(QueryHandler):
+class Plugin(TriggerQueryHandler):
     def id(self) -> str:
         return __name__
 
@@ -28,7 +28,7 @@ class Plugin(QueryHandler):
     def synopsis(self) -> str:
         return 'query'
 
-    def handleQuery(self, query: Query) -> None:
+    def handleTriggerQuery(self, query: TriggerQuery) -> None:
         query_str = query.string.strip()
         if not query_str:
             return
