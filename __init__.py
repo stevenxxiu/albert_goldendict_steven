@@ -1,32 +1,30 @@
-from albert import Action, Item, TriggerQuery, TriggerQueryHandler, runDetachedProcess  # pylint: disable=import-error
+from albert import (  # pylint: disable=import-error
+    Action,
+    PluginInstance,
+    StandardItem,
+    TriggerQuery,
+    TriggerQueryHandler,
+    runDetachedProcess,
+)
 
 
-md_iid = '1.0'
-md_version = '1.1'
+md_iid = '2.0'
+md_version = '1.2'
 md_name = 'GoldenDict Steven'
 md_description = 'Searches in GoldenDict'
 md_url = 'https://github.com/stevenxxiu/albert_goldendict_steven'
 md_maintainers = '@stevenxxiu'
 md_bin_dependencies = ['goldendict']
 
-ICON_PATH = 'xdg:goldendict'
+ICON_URL = 'xdg:goldendict'
 
 
-class Plugin(TriggerQueryHandler):
-    def id(self) -> str:
-        return __name__
-
-    def name(self) -> str:
-        return md_name
-
-    def description(self) -> str:
-        return md_description
-
-    def defaultTrigger(self) -> str:
-        return 'gd '
-
-    def synopsis(self) -> str:
-        return 'query'
+class Plugin(PluginInstance, TriggerQueryHandler):
+    def __init__(self):
+        TriggerQueryHandler.__init__(
+            self, id=__name__, name=md_name, description=md_description, synopsis='query', defaultTrigger='gd '
+        )
+        PluginInstance.__init__(self, extensions=[self])
 
     def handleTriggerQuery(self, query: TriggerQuery) -> None:
         query_str = query.string.strip()
@@ -34,11 +32,11 @@ class Plugin(TriggerQueryHandler):
             return
 
         query.add(
-            Item(
+            StandardItem(
                 id=md_name,
                 text=md_name,
                 subtext=f'Look up {query_str} using <i>GoldenDict</i>',
-                icon=[ICON_PATH],
+                iconUrls=[ICON_URL],
                 actions=[Action(md_name, md_name, lambda: runDetachedProcess(['goldendict', query_str]))],
             )
         )
