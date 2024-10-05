@@ -2,7 +2,7 @@
 Searches in *GoldenDict*.
 
 ## Install
-To install, copy or symlink this directory to `~/.local/share/albert/org.albert.extension.python/modules/goldendict_steven/`.
+To install, copy or symlink this directory to `~/.local/share/albert/python/plugins/goldendict_steven/`.
 
 ## Development Setup
 To setup the project for development, run:
