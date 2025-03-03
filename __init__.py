@@ -1,4 +1,4 @@
-from albert import (  # pylint: disable=import-error
+from albert import (
     Action,
     PluginInstance,
     StandardItem,
@@ -6,13 +6,13 @@ from albert import (  # pylint: disable=import-error
     runDetachedProcess,
 )
 
-
-md_iid = '2.3'
-md_version = '1.3'
+md_iid = '3.0'
+md_version = '1.4'
 md_name = 'GoldenDict Steven'
 md_description = 'Searches in GoldenDict'
+md_license = 'MIT'
 md_url = 'https://github.com/stevenxxiu/albert_goldendict_steven'
-md_maintainers = '@stevenxxiu'
+md_authors = ['@stevenxxiu']
 md_bin_dependencies = ['goldendict']
 
 ICON_URL = 'xdg:goldendict'
@@ -20,10 +20,14 @@ ICON_URL = 'xdg:goldendict'
 
 class Plugin(PluginInstance, TriggerQueryHandler):
     def __init__(self):
-        TriggerQueryHandler.__init__(
-            self, id=__name__, name=md_name, description=md_description, synopsis='query', defaultTrigger='gd '
-        )
         PluginInstance.__init__(self)
+        TriggerQueryHandler.__init__(self)
+
+    def synopsis(self, _query: str) -> str:
+        return 'query'
+
+    def defaultTrigger(self):
+        return 'gd '
 
     def handleTriggerQuery(self, query) -> None:
         query_str = query.string.strip()
