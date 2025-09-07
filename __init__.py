@@ -1,6 +1,9 @@
+from typing import override
+
 from albert import (
     Action,
     PluginInstance,
+    Query,
     StandardItem,
     TriggerQueryHandler,
     runDetachedProcess,
@@ -23,18 +26,21 @@ class Plugin(PluginInstance, TriggerQueryHandler):
         PluginInstance.__init__(self)
         TriggerQueryHandler.__init__(self)
 
+    @override
     def synopsis(self, _query: str) -> str:
         return 'query'
 
+    @override
     def defaultTrigger(self):
         return 'gd '
 
-    def handleTriggerQuery(self, query) -> None:
+    @override
+    def handleTriggerQuery(self, query: Query) -> None:
         query_str = query.string.strip()
         if not query_str:
             return
 
-        query.add(
+        query.add(  # pyright: ignore[reportUnknownMemberType]
             StandardItem(
                 id=md_name,
                 text=md_name,
