@@ -41,7 +41,7 @@ class Plugin(PluginInstance, TriggerQueryHandler):
             return
 
         item = StandardItem(
-            id=md_name,
+            id=self.id(),
             text=md_name,
             subtext=f'Look up {query_str} using <i>GoldenDict</i>',
             iconUrls=[ICON_URL],
