@@ -40,12 +40,11 @@ class Plugin(PluginInstance, TriggerQueryHandler):
         if not query_str:
             return
 
-        query.add(  # pyright: ignore[reportUnknownMemberType]
-            StandardItem(
-                id=md_name,
-                text=md_name,
-                subtext=f'Look up {query_str} using <i>GoldenDict</i>',
-                iconUrls=[ICON_URL],
-                actions=[Action(md_name, md_name, lambda: runDetachedProcess(['goldendict', query_str]))],
-            )
+        item = StandardItem(
+            id=md_name,
+            text=md_name,
+            subtext=f'Look up {query_str} using <i>GoldenDict</i>',
+            iconUrls=[ICON_URL],
+            actions=[Action(md_name, md_name, lambda: runDetachedProcess(['goldendict', query_str]))],
         )
+        query.add(item)  # pyright: ignore[reportUnknownMemberType]
