@@ -6,10 +6,11 @@ from albert import (
     Query,
     StandardItem,
     TriggerQueryHandler,
+    makeThemeIcon,
     runDetachedProcess,
 )
 
-md_iid = '3.0'
+md_iid = '4.0'
 md_version = '1.4'
 md_name = 'GoldenDict Steven'
 md_description = 'Searches in GoldenDict'
@@ -18,7 +19,7 @@ md_url = 'https://github.com/stevenxxiu/albert_goldendict_steven'
 md_authors = ['@stevenxxiu']
 md_bin_dependencies = ['goldendict']
 
-ICON_URL = 'xdg:goldendict'
+ICON_NAME = 'goldendict'
 
 
 class Plugin(PluginInstance, TriggerQueryHandler):
@@ -44,7 +45,7 @@ class Plugin(PluginInstance, TriggerQueryHandler):
             id=self.id(),
             text=md_name,
             subtext=f'Look up {query_str} using <i>GoldenDict</i>',
-            iconUrls=[ICON_URL],
+            icon_factory=lambda: makeThemeIcon(ICON_NAME),
             actions=[Action(md_name, md_name, lambda: runDetachedProcess(['goldendict', query_str]))],
         )
         query.add(item)  # pyright: ignore[reportUnknownMemberType]
