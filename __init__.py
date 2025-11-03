@@ -42,10 +42,10 @@ class Plugin(PluginInstance, TriggerQueryHandler):
             return
 
         item = StandardItem(
-            id=self.id(),
+            id='goldendict',
             text=md_name,
             subtext=f'Look up {query_str} using <i>GoldenDict</i>',
             icon_factory=lambda: makeThemeIcon(ICON_NAME),
-            actions=[Action(md_name, md_name, lambda: runDetachedProcess(['goldendict', query_str]))],
+            actions=[Action('goldendict', md_name, lambda: runDetachedProcess(['goldendict', query_str]))],
         )
         query.add(item)  # pyright: ignore[reportUnknownMemberType]
